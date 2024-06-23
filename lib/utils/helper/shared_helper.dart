@@ -4,11 +4,13 @@ class SharedHelper {
   Future<void> setName(String name) async {
     SharedPreferences sha = await SharedPreferences.getInstance();
     sha.setString("name", name);
+    print(name);
   }
 
   Future<String?> getName() async {
     SharedPreferences sha = await SharedPreferences.getInstance();
     String? name = sha.getString('name');
+    print(name);
     return name;
   }
 

@@ -1,5 +1,5 @@
 class ContactModel
 {
-  String? name,mobile,message;
-  ContactModel({required this.name, this.mobile,this.message});
+  String? name,mobile,message,image;
+  ContactModel({ this.name, this.mobile,this.message,this.image});
 }

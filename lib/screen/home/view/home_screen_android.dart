@@ -3,6 +3,9 @@ import 'package:platform_coneveter/screen/call/view/call_screen_android.dart';
 import 'package:platform_coneveter/screen/chat/view/chat_screen_android.dart';
 import 'package:platform_coneveter/screen/contact/view/contact_screen_android.dart';
 import 'package:platform_coneveter/screen/setting/view/setting_screen_android.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/home_provider.dart';
 
 class HomeScreenAndroid extends StatefulWidget {
   const HomeScreenAndroid({super.key});
@@ -12,14 +15,24 @@ class HomeScreenAndroid extends StatefulWidget {
 }
 
 class _HomeScreenAndroidState extends State<HomeScreenAndroid> {
+  HomeProvider? providerR;
+  HomeProvider? providerW;
   @override
   Widget build(BuildContext context) {
+    providerR = context.read<HomeProvider>();
+    providerW = context.read<HomeProvider>();
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Platform"),
-          bottom: TabBar(
+          backgroundColor: Colors.amber.shade300,
+          actions: [
+            Switch(value: providerW!.isIos, onChanged: (value) {
+              providerR!.isCheck();
+            },)
+          ],
+          title: const Text("Platform"),
+          bottom: const TabBar(
             tabs: [
               Tab(
                 text: "Contact",
@@ -36,7 +49,7 @@ class _HomeScreenAndroidState extends State<HomeScreenAndroid> {
             ],
           ),
         ),
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           ContactScreenAndroid(),
           ChatScreenAndroid(),
           CallScreenAndroid(),

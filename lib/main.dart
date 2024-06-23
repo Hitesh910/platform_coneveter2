@@ -3,22 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:platform_coneveter/screen/home/provider/home_provider.dart';
 import 'package:platform_coneveter/screen/setting/provider/seeting_provider.dart';
 import 'package:platform_coneveter/utils/app_routes.dart';
+import 'package:platform_coneveter/utils/app_theme.dart';
 import 'package:provider/provider.dart';
 
-void main()
-{
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: HomeProvider()),
-        ChangeNotifierProvider.value(value: SettingProvider()),
-      ],
-      child: MaterialApp(
-        routes: app_routes,
-      ),
-    ),
-    // CupertinoApp(
-    //   routes: app_routes1,
-    // )
+        providers: [
+          ChangeNotifierProvider.value(value: HomeProvider()),
+          ChangeNotifierProvider.value(value: SettingProvider()),
+        ],
+        child: Consumer<HomeProvider>(
+          builder: (context, value, child) {
+            value.getTheme();
+            return value.isIos == false
+                ? MaterialApp(
+              debugShowCheckedModeBanner: false,
+                    theme: ThemeData.light(),
+                    darkTheme: ThemeData.dark(),
+                    themeMode:
+                    // ThemeMode.dark,
+                    value.theme == "Light"
+                        ? ThemeMode.light
+                        : value.theme == "Dark"
+                            ? ThemeMode.dark
+                            : ThemeMode.system,
+                    routes: app_routes,
+                  )
+                : CupertinoApp(
+              debugShowCheckedModeBanner: false,
+                    theme: value.theme == "light"
+                        ? light1
+                        : value.theme == "dark"
+                            ? dark1
+                            : light1,
+                    routes: app_routes1,
+                  );
+          },
+        )
+        //       ?MaterialApp(
+        //     routes: app_routes,
+        //   )
+        // ),
+        // :CupertinoApp(
+        //   routes: app_routes1,
+        // )
+        ),
   );
 }

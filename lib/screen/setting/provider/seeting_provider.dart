@@ -5,27 +5,28 @@ import '../../../utils/helper/shared_helper.dart';
 
 class SettingProvider with ChangeNotifier
 {
-  SharedHelper share = SharedHelper();
+   SharedHelper share = SharedHelper();
   String? name;
   String? bio;
   bool? check;
-  String? theme;
+  // String? theme;
+  String? selectedImage;
 
   bool isProfile = false;
 
-  void saveTheme(String theme) {
-    share.setData(theme);
-    getTheme();
-  }
+  // void saveTheme(String theme) {
+  //   share.setData(theme);
+  //   getTheme();
+  // }
+  //
+  // void getTheme()async{
+  //   theme = await share.getData();
+  //   notifyListeners();
+  // }
 
-  void getTheme()async{
-    theme = await share.getData();
-    notifyListeners();
-  }
-
-  void  profile(bool value)
+  void  profile()
   {
-    isProfile =value;
+    isProfile =!isProfile;
     notifyListeners();
   }
 
@@ -61,6 +62,12 @@ class SettingProvider with ChangeNotifier
   async
   {
     check = await share.getCheck();
+    notifyListeners();
+  }
+
+  void selectImage(String? image)
+  {
+    selectedImage = image;
     notifyListeners();
   }
 }
