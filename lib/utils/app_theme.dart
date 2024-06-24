@@ -14,5 +14,8 @@ CupertinoThemeData light1 =  CupertinoThemeData(
 );
 
 CupertinoThemeData dark1 = CupertinoThemeData(
-  brightness: Brightness.dark
+  brightness: Brightness.dark,
+      scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
+  textTheme: CupertinoTextThemeData(textStyle: TextStyle(color: CupertinoColors.white,fontSize: 18),pickerTextStyle: TextStyle(color: CupertinoColors.black),
+  dateTimePickerTextStyle: TextStyle(color: CupertinoColors.black,fontSize: 20))
 );

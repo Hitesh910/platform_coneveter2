@@ -33,9 +33,9 @@ void main() {
                   )
                 : CupertinoApp(
               debugShowCheckedModeBanner: false,
-                    theme: value.theme == "light"
+                    theme: value.theme == "Light"
                         ? light1
-                        : value.theme == "dark"
+                        : value.theme == "Dark"
                             ? dark1
                             : light1,
                     routes: app_routes1,

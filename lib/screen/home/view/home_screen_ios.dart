@@ -3,6 +3,7 @@ import 'package:platform_coneveter/screen/call/view/call_screen_ios.dart';
 import 'package:platform_coneveter/screen/chat/view/chat_screen_ios.dart';
 import 'package:platform_coneveter/screen/contact/view/contact_screen_ios.dart';
 import 'package:platform_coneveter/screen/setting/view/setting_screen_ios.dart';
+import 'package:platform_coneveter/utils/permission_handle.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/home_provider.dart';
@@ -17,6 +18,13 @@ class HomeScreenIos extends StatefulWidget {
 class _HomeScreenIosState extends State<HomeScreenIos> {
   HomeProvider? providerR;
   HomeProvider? providerW;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    PermissionHandle();
+  }
 
   @override
   Widget build(BuildContext context) {
