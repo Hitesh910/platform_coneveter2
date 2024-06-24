@@ -47,7 +47,7 @@ class SettingProvider with ChangeNotifier
     share.setBio(Bio);
   }
 
-  void getBio()
+  Future<void> getBio()
   async
   {
     bio = await share.getBio();

@@ -29,10 +29,11 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<SettingProvider>().getData();
-    context.read<SettingProvider>().getBio();
-    print(context.read<SettingProvider>().name);
-    print(context.read<SettingProvider>().bio);
+    context.read<SettingProvider>()..getData()..getBio().then((value) {
+      txtName.text = context.read<SettingProvider>().name!;
+      txtBio.text = context.read<SettingProvider>().bio!;
+    },);
+
   }
 
   @override
@@ -41,8 +42,7 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
     providerW = context.watch<SettingProvider>();
     providerHomeR = context.read<HomeProvider>();
     providerHomeW = context.watch<HomeProvider>();
-    txtName.text = providerR!.name!;
-    txtBio.text = providerR!.bio!;
+
     return Form(
       key: firmKey,
       child: Scaffold(
