@@ -32,33 +32,32 @@ class _HomeScreenIosState extends State<HomeScreenIos> {
     providerW = context.watch<HomeProvider>();
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          leading: Text("Platform",style: TextStyle(fontSize: 25),),
+          middle: const Text(
+            "Platform",
+          ),
           trailing: CupertinoSwitch(
             value: providerW!.isIos,
             onChanged: (value) {
               providerR!.isCheck();
             },
           ),
-          backgroundColor: CupertinoColors.systemYellow.withOpacity(0.8),
         ),
         child: CupertinoTabScaffold(
           // controller: CupertinoTabController(initialIndex: 4),
-          tabBar: CupertinoTabBar(
-
-              items: [
+          tabBar: CupertinoTabBar(items: const [
             BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.person_badge_plus)),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.circle_grid_hex_fill)),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone)),
-                BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings))
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.circle_grid_hex_fill)),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone)),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings))
           ]),
           tabBuilder: (context, index) {
-
             return index == 0
-                ? ContactScreenIos()
+                ? const ContactScreenIos()
                 : index == 1
-                    ? ChatScreenIos()
-                :SettingScreenIos();
+                    ? const ChatScreenIos()
+                    : const SettingScreenIos();
             // ? index == 2
             //             ? CallScreenIos()
             //             : SettingScreenIos()

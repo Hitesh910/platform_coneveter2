@@ -44,7 +44,7 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
                 subtitle: Text("${providerR!.contactList[index].message}"),
                 trailing: Text("Date"),
                 onTap: () {
-                  showDilaog(index);
+                  showDilaog();
                   print("${providerR!.contactList[index].message}");
                   providerR!.updateIndex(index);
                 },
@@ -56,7 +56,7 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
     );
   }
 
-  void showDilaog(int index) {
+  void showDilaog() {
     txtMsg.text = providerR!.contactList[providerR!.selectedIndex].message!;
 
     showModalBottomSheet(
@@ -71,7 +71,7 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: FileImage(File(
-                      "${providerR!.contactList[index].image}")),
+                      "${providerR!.contactList[providerR!.selectedIndex].image}")),
                 ),
                 SizedBox(
                   height: 10,

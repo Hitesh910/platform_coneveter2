@@ -29,6 +29,10 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
     return Scaffold(
+      backgroundColor: providerW!.theme == "Light"
+          ?
+      Colors.cyan.withGreen(250).withRed(242).withBlue(255)
+          : Colors.black12,
       body: Form(
         key: formKey,
         child: Padding(
@@ -41,7 +45,7 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                   alignment: const Alignment(1.4, 1),
                   children: [
                     providerR!.selectedImage == null
-                        ? CircleAvatar(
+                        ? const CircleAvatar(
                             radius: 50,
                           )
                         : CircleAvatar(
@@ -82,25 +86,23 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                   },
                 ),
               ),
-               SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SizedBox(
                 height: 50,
                 width: 380,
                 child: TextFormField(
-                  decoration:  InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       label: Text("Enter your Mobile")),
                   controller: txtMobile,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Mobile is required";
+                    } else if (value.length != 10) {
+                      return "Enter valid number";
                     }
-                    else if(value.length != 10)
-                      {
-                        return "Enter valid number";
-                      }
                     return null;
                   },
                 ),
@@ -136,7 +138,7 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                 label: d1 == null
                     ? const Text("Pick date")
                     : Text(
-                        "${providerR?.d1.day}/${providerR?.d1.month}/${providerR?.d1.year}"),
+                        "${providerR?.d1!.day}/${providerR?.d1!.month}/${providerR?.d1!.year}"),
                 icon: const Icon(Icons.calendar_month),
               ),
               TextButton.icon(
@@ -163,11 +165,11 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                         txtName.clear();
                         txtMobile.clear();
                         txtMessage.clear();
-                          providerR!.selectImage(null);
+                        providerR!.selectImage(null);
                         // providerR!.changeImage();
                         // providerW!.Time(null as TimeOfDay);
                         time = null;
-                        d1=null;
+                        d1 = null;
                       }
                     },
                     child: const Text("Save")),

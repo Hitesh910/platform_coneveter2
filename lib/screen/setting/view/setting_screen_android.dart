@@ -47,7 +47,7 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
       key: firmKey,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Setting"),
+          title: const Text("Setting"),
         ),
         body: Form(
           child: SizedBox(
@@ -55,11 +55,11 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
             child: Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Profile"),
+                  leading: const Icon(Icons.person),
+                  title: const Text("Profile"),
                   trailing: providerW!.isProfile
-                      ? Icon(Icons.arrow_drop_down_outlined)
-                      : Icon(Icons.arrow_right),
+                      ? const Icon(Icons.arrow_drop_down_outlined)
+                      : const Icon(Icons.arrow_right),
                   onTap: () {
                     providerR!.profile();
                   },
@@ -69,10 +69,10 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
                     child: Column(
                       children: [
                         Stack(
-                          alignment: Alignment(1.4, 1),
+                          alignment: const Alignment(1.4, 1),
                           children: [
                             providerR!.selectedImage == null
-                                ? CircleAvatar(radius: 50)
+                                ? const CircleAvatar(radius: 50)
                                 : CircleAvatar(
                                     radius: 50,
                                     backgroundImage: FileImage(
@@ -85,19 +85,19 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
                                     source: ImageSource.gallery);
                                 providerR!.selectImage(xfile?.path);
                               },
-                              icon: Icon(Icons.camera_alt),
-                              style: ButtonStyle(
+                              icon: const Icon(Icons.camera_alt),
+                              style: const ButtonStyle(
                                   backgroundColor:
                                       WidgetStatePropertyAll(Colors.blue)),
                             )
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         SizedBox(
                           height: 50,
                           width: 380,
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 label: Text("Enter your name")),
                             controller: txtName,
@@ -109,12 +109,12 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
                             },
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         SizedBox(
                           height: 50,
                           width: 380,
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 label: Text("Enter Bio")),
                             controller: txtBio,
@@ -137,12 +137,12 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
                                 providerR!.saveBio(txtBio.text);
                               }
                             },
-                            child: Text("Save"))
+                            child: const Text("Save"))
                       ],
                     )),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Profile"),
+                  leading: const Icon(Icons.person),
+                  title: const Text("Profile"),
                   trailing: PopupMenuButton(
                     itemBuilder: (context) {
                       return [

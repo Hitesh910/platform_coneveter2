@@ -13,7 +13,7 @@ class HomeProvider with ChangeNotifier
   bool isIos= false;
   int selectedIndex = 0;
   String? theme;
- DateTime d1= DateTime.now();
+ DateTime? d1;
  TimeOfDay t1 = TimeOfDay.now();
 
   void  profile(bool value)
