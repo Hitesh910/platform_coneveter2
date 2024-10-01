@@ -25,6 +25,7 @@ class _HomeScreenAndroidState extends State<HomeScreenAndroid> {
     super.initState();
     PermissionHandle();
   }
+
   @override
   Widget build(BuildContext context) {
     providerR = context.read<HomeProvider>();
@@ -35,12 +36,20 @@ class _HomeScreenAndroidState extends State<HomeScreenAndroid> {
         appBar: AppBar(
           backgroundColor: Colors.amber.shade300,
           actions: [
-            Switch(value: providerW!.isIos, onChanged: (value) {
-              providerR!.isCheck();
-            },)
+            Switch(
+              value: providerW!.isIos,
+              onChanged: (value) {
+                providerR!.isCheck();
+              },
+            )
           ],
-          title: const Text("Platform"),
+          title: const Text(
+            "Platform",
+            style: TextStyle(color: Colors.black),
+          ),
           bottom: const TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.black,
             tabs: [
               Tab(
                 text: "Contact",
@@ -57,13 +66,14 @@ class _HomeScreenAndroidState extends State<HomeScreenAndroid> {
             ],
           ),
         ),
-        body: const TabBarView(children: [
-          ContactScreenAndroid(),
-          ChatScreenAndroid(),
-          CallScreenAndroid(),
-          SettingScreenAndroid(),
-
-        ]),
+        body: const TabBarView(
+          children: [
+            ContactScreenAndroid(),
+            ChatScreenAndroid(),
+            CallScreenAndroid(),
+            SettingScreenAndroid(),
+          ],
+        ),
       ),
     );
   }

@@ -32,6 +32,7 @@ class _HomeScreenIosState extends State<HomeScreenIos> {
     providerW = context.watch<HomeProvider>();
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
+          backgroundColor: providerW!.theme == "Light" ?CupertinoColors.systemYellow.darkHighContrastElevatedColor :CupertinoColors.systemYellow.darkHighContrastColor,
           middle: const Text(
             "Platform",
           ),
@@ -44,20 +45,36 @@ class _HomeScreenIosState extends State<HomeScreenIos> {
         ),
         child: CupertinoTabScaffold(
           // controller: CupertinoTabController(initialIndex: 4),
-          tabBar: CupertinoTabBar(items: const [
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.person_badge_plus)),
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.circle_grid_hex_fill)),
-            BottomNavigationBarItem(icon: Icon(CupertinoIcons.phone)),
-            BottomNavigationBarItem(icon: Icon(CupertinoIcons.settings))
-          ]),
+          tabBar: CupertinoTabBar(
+            backgroundColor: CupertinoColors.systemYellow.darkHighContrastElevatedColor,
+            activeColor: CupertinoColors.black,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.person_badge_plus),
+                label: "Contact"
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.circle_grid_hex_fill),
+                label: "Chat"
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.phone),
+                label: "Phone"
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.settings),
+                label: "Setting"
+              )
+            ],
+          ),
           tabBuilder: (context, index) {
             return index == 0
                 ? const ContactScreenIos()
                 : index == 1
                     ? const ChatScreenIos()
-                    : const SettingScreenIos();
+                    : index == 2
+                ? const CallScreenIos()
+                : const SettingScreenIos();
             // ? index == 2
             //             ? CallScreenIos()
             //             : SettingScreenIos()

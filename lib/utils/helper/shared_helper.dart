@@ -36,17 +36,30 @@ class SharedHelper {
     return check;
   }
 
-  Future<void> setData(String mode)
+  Future<void> setData(bool theme)
   async {
     SharedPreferences sha =   await SharedPreferences.getInstance();
-    sha.setString("theme", mode);
+    sha.setBool("theme", theme);
   }
 
-  Future<String?> getData()
+  Future<bool?> getData()
   async {
     SharedPreferences share = await SharedPreferences.getInstance();
-    String? data = share.getString('theme');
+    bool? data = share.getBool('theme');
     return data;
+  }
+
+  Future<void> setImage(String data)
+  async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+     share.setString("image", data);
+  }
+
+  Future<String?> getImage()
+  async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    String? image = share.getString("image");
+    return image;
   }
 
 

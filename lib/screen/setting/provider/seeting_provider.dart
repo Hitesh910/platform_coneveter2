@@ -11,6 +11,7 @@ class SettingProvider with ChangeNotifier
   bool? check;
   // String? theme;
   String? selectedImage;
+  String? image;
 
   bool isProfile = false;
 
@@ -62,6 +63,19 @@ class SettingProvider with ChangeNotifier
   async
   {
     check = await share.getCheck();
+    notifyListeners();
+  }
+
+  void setImage(String image)
+  {
+    print("============== image$image");
+    share.setImage(image);
+  }
+
+  Future<void> getImage()
+  async {
+    selectedImage = await share.getImage();
+    print("================ select get image${selectedImage}");
     notifyListeners();
   }
 

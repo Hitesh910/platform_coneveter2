@@ -12,7 +12,7 @@ class HomeProvider with ChangeNotifier
   String? selectedImage;
   bool isIos= false;
   int selectedIndex = 0;
-  String? theme;
+  bool? theme = false;
  DateTime? d1;
  TimeOfDay t1 = TimeOfDay.now();
 
@@ -47,7 +47,7 @@ class HomeProvider with ChangeNotifier
     notifyListeners();
   }
 
-  void saveTheme(String theme) {
+  void saveTheme(bool theme) {
     share.setData(theme);
     getTheme();
   }

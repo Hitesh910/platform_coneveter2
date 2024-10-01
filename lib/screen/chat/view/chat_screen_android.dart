@@ -23,6 +23,8 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
 
     providerW = context.watch<HomeProvider>();
     return Scaffold(
+      backgroundColor:
+          providerW!.theme ==  false ? Colors.white54 : Colors.black12,
       body: ListView.builder(
         itemCount: providerW!.contactList.length,
         itemBuilder: (context, index) {
@@ -31,18 +33,20 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
               Column(
             children: [
               ListTile(
-                leading: providerR!.contactList[providerR!.selectedIndex].image == null
-                    ? CircleAvatar(
-                        radius: 30,
-                      )
-                    : CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            FileImage(File("${providerR!.contactList[index].image}")),
-                      ),
+                leading:
+                    providerR!.contactList[providerR!.selectedIndex].image ==
+                            null
+                        ? const CircleAvatar(
+                            radius: 30,
+                          )
+                        : CircleAvatar(
+                            radius: 30,
+                            backgroundImage: FileImage(
+                                File("${providerR!.contactList[index].image}")),
+                          ),
                 title: Text("${providerR!.contactList[index].name}"),
                 subtitle: Text("${providerR!.contactList[index].message}"),
-                trailing: Text("Date"),
+                trailing: const Text("Date"),
                 onTap: () {
                   showDilaog();
                   print("${providerR!.contactList[index].message}");
@@ -68,28 +72,31 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 20,),
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: FileImage(File(
-                      "${providerR!.contactList[providerR!.selectedIndex].image}")),
+                  backgroundImage: FileImage(
+                    File(
+                        "${providerR!.contactList[providerR!.selectedIndex].image}"),
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   "${providerR!.contactList[providerR!.selectedIndex].name}",
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
                 Text(
                     "${providerR!.contactList[providerR!.selectedIndex].message}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                        icon: Icon(Icons.edit),
+                        icon: const Icon(Icons.edit),
                         onPressed: () {
                           // Column(
                           //   children: [
@@ -107,7 +114,8 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
                                     TextFormField(
                                       controller: txtMsg,
                                       decoration: const InputDecoration(
-                                          label: Text("Update Message")),
+                                        label: Text("Update Message"),
+                                      ),
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return "Update message is required";
@@ -116,15 +124,28 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
                                       },
                                     ),
                                     ElevatedButton(
-                                        onPressed: () {
-                                          ContactModel c1 = ContactModel(
-                                              message: txtMsg.text,image: providerR!.contactList[providerR!.selectedIndex].image,mobile: providerR!.contactList[providerR!.selectedIndex].mobile,name: providerR!.contactList[providerR!.selectedIndex].name);
-                                          providerR!.updateData(c1);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          // providerR!.updateData(c1);
-                                        },
-                                        child: Text("Save"))
+                                      onPressed: () {
+                                        ContactModel c1 = ContactModel(
+                                            message: txtMsg.text,
+                                            image: providerR!
+                                                .contactList[
+                                                    providerR!.selectedIndex]
+                                                .image,
+                                            mobile: providerR!
+                                                .contactList[
+                                                    providerR!.selectedIndex]
+                                                .mobile,
+                                            name: providerR!
+                                                .contactList[
+                                                    providerR!.selectedIndex]
+                                                .name);
+                                        providerR!.updateData(c1);
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                        // providerR!.updateData(c1);
+                                      },
+                                      child: const Text("Save"),
+                                    )
                                   ],
                                 ),
                               );
@@ -153,20 +174,23 @@ class _ChatScreenAndroidState extends State<ChatScreenAndroid> {
                           // );
                         }),
                     IconButton(
-                        onPressed: () {
-                          providerW!.deleteData();
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.delete))
+                      onPressed: () {
+                        providerW!.deleteData();
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.delete),
+                    )
                   ],
                 ),
                 FilledButton(
-                    style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(Colors.grey)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Cancel")),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.grey),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cancel"),
+                ),
                 // TextButton(onPressed: onPressed, child: child)
               ],
             );

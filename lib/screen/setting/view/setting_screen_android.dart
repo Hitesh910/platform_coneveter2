@@ -29,11 +29,14 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<SettingProvider>()..getData()..getBio().then((value) {
-      txtName.text = context.read<SettingProvider>().name!;
-      txtBio.text = context.read<SettingProvider>().bio!;
-    },);
-
+    context.read<SettingProvider>()
+      ..getData()
+      ..getBio().then(
+        (value) {
+          txtName.text = context.read<SettingProvider>().name!;
+          txtBio.text = context.read<SettingProvider>().bio!;
+        },
+      )..getImage();
   }
 
   @override
@@ -46,7 +49,11 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
     return Form(
       key: firmKey,
       child: Scaffold(
+        backgroundColor:
+            providerHomeW!.theme ==  false ? Colors.white54 : Colors.black12,
         appBar: AppBar(
+          backgroundColor:
+              providerHomeW!.theme ==  false ? Colors.white54 : Colors.black12,
           title: const Text("Setting"),
         ),
         body: Form(
@@ -65,109 +72,99 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
                   },
                 ),
                 Visibility(
-                    visible: providerW!.isProfile,
-                    child: Column(
-                      children: [
-                        Stack(
-                          alignment: const Alignment(1.4, 1),
-                          children: [
-                            providerR!.selectedImage == null
-                                ? const CircleAvatar(radius: 50)
-                                : CircleAvatar(
-                                    radius: 50,
-                                    backgroundImage: FileImage(
-                                        File("${providerW!.selectedImage}")),
+                  visible: providerW!.isProfile,
+                  child: Column(
+                    children: [
+                      Stack(
+                        alignment: const Alignment(1.4, 1),
+                        children: [
+                          providerR!.selectedImage == null
+                              ? const CircleAvatar(radius: 50)
+                              : CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage: FileImage(
+                                    File("${providerW!.selectedImage}"),
                                   ),
-                            IconButton.filledTonal(
-                              onPressed: () async {
-                                ImagePicker picker = ImagePicker();
-                                XFile? xfile = await picker.pickImage(
-                                    source: ImageSource.gallery);
-                                providerR!.selectImage(xfile?.path);
-                              },
-                              icon: const Icon(Icons.camera_alt),
-                              style: const ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStatePropertyAll(Colors.blue)),
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 20,),
-                        SizedBox(
-                          height: 50,
-                          width: 380,
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                label: Text("Enter your name")),
-                            controller: txtName,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                "Name is required";
-                              }
-                              return null;
+                                ),
+                          IconButton.filledTonal(
+                            onPressed: () async {
+                              ImagePicker picker = ImagePicker();
+                              XFile? xfile = await picker.pickImage(
+                                  source: ImageSource.gallery);
+                              providerR!.selectImage(xfile?.path);
                             },
+                            icon: const Icon(Icons.camera_alt),
+                            style: const ButtonStyle(
+                              backgroundColor:
+                                  WidgetStatePropertyAll(Colors.blue),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 50,
+                        width: 380,
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            label: Text("Enter your name"),
                           ),
+                          controller: txtName,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              "Name is required";
+                            }
+                            return null;
+                          },
                         ),
-                        const SizedBox(height: 20,),
-                        SizedBox(
-                          height: 50,
-                          width: 380,
-                          child: TextFormField(
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                label: Text("Enter Bio")),
-                            controller: txtBio,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                "Name is required";
-                              }
-                              return null;
-                            },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 50,
+                        width: 380,
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            label: Text("Enter Bio"),
                           ),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              // providerR!.getBio();
-                              // providerR!.getData();
-                              if (firmKey.currentState!.validate()) {
-                                // SettingModel s1 =
-                                // SettingModel(name: txtName.text,bio: txtBio.text);
-                                providerR!.saveData(txtName.text);
-                                providerR!.saveBio(txtBio.text);
-                              }
-                            },
-                            child: const Text("Save"))
-                      ],
-                    )),
-                ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text("Profile"),
-                  trailing: PopupMenuButton(
-                    itemBuilder: (context) {
-                      return [
-                        PopupMenuItem(
-                          child: const Text("System"),
-                          onTap: () {
-                            providerHomeR!.saveTheme('System');
+                          controller: txtBio,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              "Name is required";
+                            }
+                            return null;
                           },
                         ),
-                        PopupMenuItem(
-                          child: const Text("Light"),
-                          onTap: () {
-                            providerHomeR!.saveTheme('Light');
-                          },
-                        ),
-                        PopupMenuItem(
-                          child: const Text("Dark"),
-                          onTap: () {
-                            providerHomeR!.saveTheme('Dark');
-                            print("${providerHomeR!.theme}");
-                          },
-                        ),
-                      ];
-                    },
+                      ),
+                      SizedBox(height: 15,),
+                      ElevatedButton(
+                        onPressed: () {
+                          // providerR!.getBio();
+                          // providerR!.getData();
+                          if (firmKey.currentState!.validate()) {
+                            // SettingModel s1 =
+                            // SettingModel(name: txtName.text,bio: txtBio.text);
+                            providerR!.setImage(providerW!.selectedImage!);
+                            providerR!.saveData(txtName.text);
+                            providerR!.saveBio(txtBio.text);
+                          }
+                        },
+                        child: const Text("Save"),
+                      )
+                    ],
                   ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.color_lens),
+                  title: const Text("Profile"),
+                  trailing: Switch(value: providerHomeW!.theme!, onChanged: (value) {
+                    providerHomeW!.saveTheme(value);
+                  },),
                 ),
                 // Visibility(child: PopupMenuButton(
                 //   itemBuilder: (context) {
@@ -201,3 +198,30 @@ class _SettingScreenAndroidState extends State<SettingScreenAndroid> {
     );
   }
 }
+
+/*
+* PopupMenuButton(
+                    itemBuilder: (context) {
+                      return [
+                        PopupMenuItem(
+                          child: const Text("System"),
+                          onTap: () {
+                            providerHomeR!.saveTheme('System');
+                          },
+                        ),
+                        PopupMenuItem(
+                          child: const Text("Light"),
+                          onTap: () {
+                            providerHomeR!.saveTheme('Light');
+                          },
+                        ),
+                        PopupMenuItem(
+                          child: const Text("Dark"),
+                          onTap: () {
+                            providerHomeR!.saveTheme('Dark');
+                            print("${providerHomeR!.theme}");
+                          },
+                        ),
+                      ];
+                    },
+                  ),*/

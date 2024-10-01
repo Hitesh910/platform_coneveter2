@@ -24,20 +24,15 @@ void main() {
                     darkTheme: ThemeData.dark(),
                     themeMode:
                     // ThemeMode.dark,
-                    value.theme == "Light"
-                        ? ThemeMode.light
-                        : value.theme == "Dark"
-                            ? ThemeMode.dark
-                            : ThemeMode.system,
+                    value.theme == true
+              ?ThemeMode.dark
+                    :ThemeMode.light,
                     routes: app_routes,
                   )
                 : CupertinoApp(
               debugShowCheckedModeBanner: false,
-                    theme: value.theme == "Light"
-                        ? light1
-                        : value.theme == "Dark"
-                            ? dark1
-                            : light1,
+                    theme: value.theme == true
+              ?dark1 :light1,
                     routes: app_routes1,
                   );
           },

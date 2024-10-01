@@ -29,10 +29,8 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
     return Scaffold(
-      backgroundColor: providerW!.theme == "Light"
-          ?
-      Colors.cyan.withGreen(250).withRed(242).withBlue(255)
-          : Colors.black12,
+      backgroundColor:
+          providerW!.theme == false ? Colors.white54 : Colors.black12,
       body: Form(
         key: formKey,
         child: Padding(
@@ -50,8 +48,9 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                           )
                         : CircleAvatar(
                             radius: 50,
-                            backgroundImage:
-                                FileImage(File("${providerW!.selectedImage}")),
+                            backgroundImage: FileImage(
+                              File("${providerW!.selectedImage}"),
+                            ),
                           ),
                     IconButton.filledTonal(
                       onPressed: () async {
@@ -62,21 +61,23 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                       },
                       icon: const Icon(Icons.camera_alt),
                       style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Colors.blue)),
+                        backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                      ),
                     )
                   ],
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               SizedBox(
-                height: 50,
+                height: 60,
                 width: 380,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      label: Text("Enter your name")),
+                    border: OutlineInputBorder(),
+                    label: Text("Enter your name"),
+                  ),
                   controller: txtName,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -87,15 +88,16 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
-                height: 50,
+                height: 60,
                 width: 380,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      label: Text("Enter your Mobile")),
+                    border: OutlineInputBorder(),
+                    label: Text("Enter your Mobile"),
+                  ),
                   controller: txtMobile,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -108,15 +110,16 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
-                height: 50,
+                height: 60,
                 width: 380,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      label: Text("Enter your Message")),
+                    border: OutlineInputBorder(),
+                    label: Text("Enter your Message"),
+                  ),
                   controller: txtMessage,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -154,25 +157,26 @@ class _ContactScreenAndroidState extends State<ContactScreenAndroid> {
               ),
               Center(
                 child: ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        ContactModel c1 = ContactModel(
-                            name: txtName.text,
-                            message: txtMessage.text,
-                            mobile: txtMobile.text,
-                            image: xfile?.path);
-                        providerR!.addContact(c1);
-                        txtName.clear();
-                        txtMobile.clear();
-                        txtMessage.clear();
-                        providerR!.selectImage(null);
-                        // providerR!.changeImage();
-                        // providerW!.Time(null as TimeOfDay);
-                        time = null;
-                        d1 = null;
-                      }
-                    },
-                    child: const Text("Save")),
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      ContactModel c1 = ContactModel(
+                          name: txtName.text,
+                          message: txtMessage.text,
+                          mobile: txtMobile.text,
+                          image: xfile?.path);
+                      providerR!.addContact(c1);
+                      txtName.clear();
+                      txtMobile.clear();
+                      txtMessage.clear();
+                      providerR!.selectImage(null);
+                      // providerR!.changeImage();
+                      // providerW!.Time(null as TimeOfDay);
+                      time = null;
+                      d1 = null;
+                    }
+                  },
+                  child: const Text("Save"),
+                ),
               )
             ],
           ),

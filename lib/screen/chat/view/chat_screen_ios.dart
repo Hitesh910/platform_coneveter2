@@ -36,7 +36,7 @@ class _ChatScreenIosState extends State<ChatScreenIos> {
             return Column(
               children: [
                 CupertinoListTile(
-                  leading: CircleAvatar( ),
+                  leading: CircleAvatar(),
                   title: Text(
                     "${providerR!.contactList[index].name}",
                     style: const TextStyle(fontSize: 20),
@@ -276,7 +276,7 @@ class _ChatScreenIosState extends State<ChatScreenIos> {
       builder: (context) {
         return Container(
           width: MediaQuery.sizeOf(context).width,
-          color: CupertinoColors.white,
+          // color: CupertinoColors.white,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
