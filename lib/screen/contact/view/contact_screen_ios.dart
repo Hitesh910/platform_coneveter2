@@ -35,24 +35,12 @@ class _ContactScreenIosState extends State<ContactScreenIos> {
       child: SingleChildScrollView(
         child: CupertinoPageScaffold(
             child: Padding(
-          padding: const EdgeInsets.only(top: 80),
+          padding: const EdgeInsets.only(top: 50),
           child: Column(
             children: [
               Stack(
                 alignment: const Alignment(0.3, 1),
                 children: [
-                  //     Transform.scale(
-                  //       alignment: Alignment(0,2.5),
-                  //       scale: 1.5,
-                  //       child: Container(
-                  //         height: 500,
-                  //         width: 800,
-                  //         // color: CupertinoColors.inactiveGray,
-                  //         decoration: BoxDecoration(
-                  //           // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(120),bottomRight: Radius.circular(120)),
-                  //             color: CupertinoColors.opaqueSeparator,shape: BoxShape.circle),
-                  //       ),
-                  //     ),
                   Center(
                     child: providerR!.selectedImage == null
                         ? Container(

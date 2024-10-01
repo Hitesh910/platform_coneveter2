@@ -20,7 +20,7 @@ class _CallScreenAndroidState extends State<CallScreenAndroid> {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
     return Scaffold(
-      backgroundColor: providerW!.theme == "Light"
+      backgroundColor: providerW!.theme == false
           ?
       Colors.white54
           : Colors.black12,
