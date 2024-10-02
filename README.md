@@ -1,14 +1,20 @@
 
 <h1>Platform Coneverter</h1>
-<h2>
+
+
 # Project Features:
- Profile management functionality
-. Add contact functionality with image and date/time pickers
-. App switching functionality (From Material to Human Interface and vice versa)
-. Call functionality
-. Edit & Delete contact functionality
-. Persistent theme save functionality using local storage
-</h2>
+- Profile management functionality
+- Add contact functionality with image and date/time pickers
+- App switching functionality (From Material to Human Interface and vice versa)
+- Call functionality
+- Edit & Delete contact functionality
+- Persistent theme save functionality using local storage
+
+# Project Technologies:
+- Dart language
+- Flutter framework with MVC and Provider architecure
+- Local storage: shared_preferences package
+
 <h1>App with mockup</h1>
 <p
         <img src = "https://github.com/user-attachments/assets/cbd6d447-7b30-43f4-8f5d-5508006b97b9"width="270"/>
